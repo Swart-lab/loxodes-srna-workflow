@@ -4,11 +4,11 @@ set -e
 # Script containing boilerplate for running Snakemake
 # Specify additional parameters (e.g. --dryrun) and rule names 
 # after invoking this script, e.g.
-# $ bash run_snakemake_dal.sh --dryrun rule_name
+# $ bash run_snakemake.sh --dryrun rule_name
 
 # Assumptions:
 #  * Workflow scripts are in a subfolder of working dir called `workflow/`
-#  * Conda environments will be placed in a subfolder `envs/`
+#  * Conda environments will be created in a subfolder `envs/`
 
 # PATHS
 SNAKEMAKE_ENV=

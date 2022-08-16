@@ -1,3 +1,7 @@
 data/*
 tmp/*
 envs/*
+.snakemake
+reads*
+mapping*
+logs

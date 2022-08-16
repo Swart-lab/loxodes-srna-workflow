@@ -1,8 +1,45 @@
 # EXAMPLE: Paths to raw data
-rawdata:
-  sample_A: example/data_A
-  sample_B: example/data_B
+srna_reads:
+  stv_rep1:
+    fwd:
+      - /ebio/abt2_projects/ag-swart-loxodes-raw/data/reads-smallrna/4306_A_run626_AGTTCCAT_S5_L001_R1_001.fastq.gz
+      - /ebio/abt2_projects/ag-swart-loxodes-raw/data/reads-smallrna/4306_A_run627_AGTTCCAT_S2_L001_R1_001.fastq.gz
+    rev:
+      - /ebio/abt2_projects/ag-swart-loxodes-raw/data/reads-smallrna/4306_A_run626_AGTTCCAT_S5_L001_R2_001.fastq.gz
+      - /ebio/abt2_projects/ag-swart-loxodes-raw/data/reads-smallrna/4306_A_run627_AGTTCCAT_S2_L001_R2_001.fastq.gz
+  stv_rep2:
+    fwd:
+      - /ebio/abt2_projects/ag-swart-loxodes-raw/data/reads-smallrna/4306_B_run626_ATGTCAAT_S6_L001_R1_001.fastq.gz
+      - /ebio/abt2_projects/ag-swart-loxodes-raw/data/reads-smallrna/4306_B_run627_ATGTCAAT_S3_L001_R1_001.fastq.gz
+    rev:
+      - /ebio/abt2_projects/ag-swart-loxodes-raw/data/reads-smallrna/4306_B_run626_ATGTCAAT_S6_L001_R2_001.fastq.gz
+      - /ebio/abt2_projects/ag-swart-loxodes-raw/data/reads-smallrna/4306_B_run627_ATGTCAAT_S3_L001_R2_001.fastq.gz
+  stv_rep3:
+    fwd:
+      - /ebio/abt2_projects/ag-swart-loxodes-raw/data/reads-smallrna/4306_C_run626_CCGTCCAT_S7_L001_R1_001.fastq.gz
+    rev:
+      - /ebio/abt2_projects/ag-swart-loxodes-raw/data/reads-smallrna/4306_C_run626_CCGTCCAT_S7_L001_R2_001.fastq.gz
+  fed_rep1:
+    fwd:
+      - /ebio/abt2_projects/ag-swart-loxodes-raw/data/reads-smallrna/4306_D_run626_GTAGAGAT_S8_L001_R1_001.fastq.gz
+      - /ebio/abt2_projects/ag-swart-loxodes-raw/data/reads-smallrna/4306_D_run627_GTAGAGAT_S4_L001_R1_001.fastq.gz
+    rev:
+      - /ebio/abt2_projects/ag-swart-loxodes-raw/data/reads-smallrna/4306_D_run626_GTAGAGAT_S8_L001_R2_001.fastq.gz
+      - /ebio/abt2_projects/ag-swart-loxodes-raw/data/reads-smallrna/4306_D_run627_GTAGAGAT_S4_L001_R2_001.fastq.gz
+  fed_rep2:
+    fwd:
+      - /ebio/abt2_projects/ag-swart-loxodes-raw/data/reads-smallrna/4306_E_run626_GTCCGCAT_S9_L001_R1_001.fastq.gz
+      - /ebio/abt2_projects/ag-swart-loxodes-raw/data/reads-smallrna/4306_E_run627_GTCCGCAT_S5_L001_R1_001.fastq.gz
+    rev:
+      - /ebio/abt2_projects/ag-swart-loxodes-raw/data/reads-smallrna/4306_E_run626_GTCCGCAT_S9_L001_R2_001.fastq.gz
+      - /ebio/abt2_projects/ag-swart-loxodes-raw/data/reads-smallrna/4306_E_run627_GTCCGCAT_S5_L001_R2_001.fastq.gz
+  fed_rep3:
+    fwd:
+      - /ebio/abt2_projects/ag-swart-loxodes-raw/data/reads-smallrna/4306_F_run626_GTGAAAAT_S10_L001_R1_001.fastq.gz
+      - /ebio/abt2_projects/ag-swart-loxodes-raw/data/reads-smallrna/4306_F_run627_GTGAAAAT_S6_L001_R1_001.fastq.gz
+    rev:
+      - /ebio/abt2_projects/ag-swart-loxodes-raw/data/reads-smallrna/4306_F_run626_GTGAAAAT_S10_L001_R2_001.fastq.gz
+      - /ebio/abt2_projects/ag-swart-loxodes-raw/data/reads-smallrna/4306_F_run627_GTGAAAAT_S6_L001_R2_001.fastq.gz
 
-samplenames:
-  - sample_A
-  - sample_B
+chlamy_ref:
+  /ebio/abt2_projects/ag-swart-loxodes/db/chlamydomonas/Creinhardtii/v5.6/assembly/Creinhardtii_281_v5.0.fa

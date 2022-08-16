@@ -4,14 +4,63 @@
 
 rule all:
     input:
-        expand("{sample}.out", sample=config['samplenames'])
+        expand('reads-merge/{sample}.merge.filter_chlamy.fq.gz', sample=config['srna_reads'])
 
-rule dosomething:
+rule bbmap_chlamy:
     input:
-        lambda wildcards: config['rawdata'][wildcards.sample]
+        merge='reads-merge/{sample}.merge.fq.gz',
+        ref=config['chlamy_ref']
     output:
-        "{sample}.out"
-    # conda: "example.yml"
-    threads: 1
+        'reads-merge/{sample}.merge.filter_chlamy.fq.gz'
+    conda: "envs/trim_merge.yml"
+    log: 'logs/bbmap_chlamy.{sample}.log'
+    threads: 8
     shell:
-        "cat {input} > {output}"
+        r"""
+        bbmap.sh -Xmx40g threads={threads} nodisk k=10 ref={input.ref} in={input.merge} outu={output} &> {log};
+        """
+
+rule bbmerge_trimmed:
+    input:
+        fwd='reads-trim/{sample}.comb.fwd_val_1.fq.gz',
+        rev='reads-trim/{sample}.comb.rev_val_2.fq.gz'
+    output:
+        merge='reads-merge/{sample}.merge.fq.gz',
+        ihist='reads-merge/{sample}.merge.ihist'
+    conda: "envs/trim_merge.yml"
+    threads: 8
+    shell:
+        r"""
+        bbmerge.sh -Xmx40g threads={threads} mininsert=10 mininsert0=10 minoverlap=10 in={input.fwd} in2={input.rev} out={output.merge} ihist={output.ihist}
+        """
+
+rule trim_galore:
+    input:
+        fwd='reads/{sample}.comb.fwd.fastq.gz',
+        rev='reads/{sample}.comb.rev.fastq.gz'
+    output:
+        fwd=temp('reads-trim/{sample}.comb.fwd_val_1.fq.gz'),
+        rev=temp('reads-trim/{sample}.comb.rev_val_2.fq.gz')
+    params:
+        outdir='reads-trim/'
+    conda: "envs/trim_merge.yml"
+    threads: 4
+    shell:
+        r"""
+        trim_galore --fastqc --small_rna --length 10 --gzip --cores {threads} --paired -o {params.outdir} {input.fwd} {input.rev};
+        """
+
+rule combine_reads:
+    input:
+        fwd=lambda wildcards: config['srna_reads'][wildcards.sample]['fwd'],
+        rev=lambda wildcards: config['srna_reads'][wildcards.sample]['rev']
+    output:
+        fwd=temp('reads/{sample}.comb.fwd.fastq.gz'),
+        rev=temp('reads/{sample}.comb.rev.fastq.gz')
+    conda: "envs/trim_merge.yml"
+    threads: 4
+    shell:
+        r"""
+        pigz -p {threads} -cd {input.fwd} | pigz -p {threads} > {output.fwd};
+        pigz -p {threads} -cd {input.rev} | pigz -p {threads} > {output.rev};
+        """

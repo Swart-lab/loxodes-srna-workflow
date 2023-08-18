@@ -11,8 +11,8 @@ set -e
 #  * Conda environments will be created in a subfolder `envs/`
 
 # PATHS
-SNAKEMAKE_ENV=
-WD=
+SNAKEMAKE_ENV=/ebio/ag-swart/home/kbseah/anaconda3/envs/snakemake
+WD=/ebio/abt2_projects/ag-swart-loxodes/analysis/sRNA_Lmag
 
 # activate snakemake conda environment
 source activate $SNAKEMAKE_ENV

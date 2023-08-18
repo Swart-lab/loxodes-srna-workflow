@@ -43,3 +43,6 @@ srna_reads:
 
 chlamy_ref:
   /ebio/abt2_projects/ag-swart-loxodes/db/chlamydomonas/Creinhardtii/v5.6/assembly/Creinhardtii_281_v5.0.fa
+
+lmag_ref:
+  /ebio/abt2_projects/ag-swart-loxodes/assembly/falcon-comb_LmagMAC/scaffolds.fasta

@@ -4,7 +4,23 @@
 
 rule all:
     input:
-        expand('reads-merge/{sample}.merge.filter_chlamy.fq.gz', sample=config['srna_reads'])
+        expand('mapping/{sample}.falcon-comb_LmagMAC.sort.bam', sample=config['srna_reads'])
+
+rule bbmap_ref:
+    input:
+        reads='reads-merge/{sample}.merge.filter_chlamy.fq.gz',
+        ref=config['lmag_ref']
+    output:
+        bam=temp('mapping/{sample}.falcon-comb_LmagMAC.bam'),
+        sort='mapping/{sample}.falcon-comb_LmagMAC.sort.bam'
+    conda: "envs/trim_merge.yml"
+    log: 'logs/bbmap_chlamy.{sample}.log'
+    threads: 8
+    shell:
+        r"""
+        bbmap.sh -Xmx120g threads={threads} nodisk k=10 ref={input.ref} in={input.reads} out={output.bam};
+        samtools sort -@ {threads} --reference {input.ref} -o {output.sort} {output.bam}
+        """
 
 rule bbmap_chlamy:
     input:

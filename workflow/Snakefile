@@ -1,7 +1,3 @@
-# If rules are split across multiple snakefiles, list them here
-# include: "rules-A"
-# include: "rules-B"
-
 rule all:
     input:
         expand('mapping/{sample}.falcon-comb_LmagMAC.sort.bam', sample=config['srna_reads'])

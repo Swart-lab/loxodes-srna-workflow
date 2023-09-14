@@ -1,4 +1,3 @@
-# EXAMPLE: Paths to raw data
 srna_reads:
   stv_rep1:
     fwd:
